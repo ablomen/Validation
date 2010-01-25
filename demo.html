@@ -1,0 +1,662 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Validation demo</title>
+	<link rel="stylesheet" href="./demo.css" type="text/css" media="screen" charset="utf-8" />
+	<style>
+		
+		th, td{
+			padding:	5px;
+		}
+		
+		input, textarea, select{
+			border:		1px solid #000;
+		}
+		
+		.validate_required{
+			border-left:	3px solid red;
+		}
+		
+		.validate_invalid{
+			border-left:	3px solid red;
+			border-color:	red;
+			color:		red;
+		}
+		
+		.validate_invalid_append{
+			color:		red;
+		}
+		
+		.validate_invalid_parent{
+			background:		red;
+		}
+		
+	/* ]]> */
+	</style>
+	
+	
+</head>
+
+<body>
+
+<div id="container">
+
+<h1>Validation</h1>
+
+<p>This is just another jQuery validation plugin, positive points are:</p>
+
+<ul>
+	<li>Easy to use.</li>
+	<li>Easy to extend.</li>
+	<li>Extend everything, add your own validation and output functions.</li>
+	<li>Generated html is valid, the code itself validates in jslint (good parts on except use strict).</li>
+	<li>Uses title attribute for textual errors, can use classes for custom behavior.</li>
+	<li>Works with jQuery 1.3.2 and 1.4</li>
+	<li>Can also be used on single elements outside of forms and inside other (ajax) functions.</li>
+</ul>
+
+<p><a href="#">Download here</a></p>
+
+<h2>Usage</h2>
+
+<p>Basic usage is very simpel, just create a form, give the required elements the validate_required class and put $("form").validate() in the bottom of your page.</p>
+
+<h3>Methods</h3>
+<table>
+	<tr>
+		<th>validate &nbsp;  &nbsp;  &nbsp; </th>
+		<td>
+			Validate the elements that are required. (Can be called by hand for ajax/other functions and single elements)
+		</td>
+	</tr>
+</table>
+
+<h3>Options</h3>
+<p><i>(very limited overview atm, more will come later, I promise)</i></p>
+<table>
+	<tr>
+		<th>required_class &nbsp; </th>
+		<td>
+			The class the validation plugin identifies the required elements with<br/>
+			<b>Default: validate_required</b>
+		</td>
+	</tr>
+	<tr>
+		<th>error_attribute &nbsp; </th>
+		<td>
+			The attribute that holds the error message<br/>
+			<b>Default: title</b>
+		</td>
+	</tr>
+	<tr>
+		<th>error_output &nbsp; </th>
+		<td>
+			The default output types for each type of field<br/>
+			<b>Default: {text:"class", email:"class", select:"class", textarea:"class", other:"append"}</b>
+		</td>
+	</tr>
+	<tr>
+		<th>error_class &nbsp; </th>
+		<td>
+			The class invalid elements get when they are invalid<br/>
+			<b>Default: validate_invalid</b>
+		</td>
+	</tr>
+	<tr>
+		<th>error_append_char &nbsp; </th>
+		<td>
+			The character that gets appended after invalid elements<br/>
+			<b>Default: *</b>
+		</td>
+	</tr>
+	<tr>
+		<th>error_append_class &nbsp; </th>
+		<td>
+			The class of the character that gets appended after invalid elements<br/>
+			<b>Default: error_append_class</b>
+		</td>
+	</tr>
+	<tr>
+		<th>error_parent_class &nbsp; </th>
+		<td>
+			The class of the parent of the invalid elements<br/>
+			<b>Default: error_parent_class</b>
+		</td>
+	</tr>
+	<tr>
+		<th>types &nbsp; </th>
+		<td>
+			List of types of elements to validate and the function to validate them<br/>
+			<b>Default: {text:validate_text, email:validate_email, checkbox:validate_checkbox, radio:validate_radio, select:validate_select, textarea:validate_text}</b>
+		</td>
+	</tr>
+	<tr>
+		<th>output &nbsp; </th>
+		<td>
+			List of output modules and the function to call them<br/>
+			<b>Default: {class:output_class, inline:output_inline, append:output_append, alert:output_alert, parent:output_parent}</b>
+		</td>
+	</tr>
+</table>
+
+<h2>Examples</h2>
+<p><i>More are coming soon</i></p>
+
+<h3>Basic validation</h3>
+
+<div class="code">
+<span class="title">Code (click here to show/hide)</span>
+<pre>
+#
+# html:
+#
+&lt;form id="form1" method="post" action="./demo.html"&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Normal input&lt;/th&gt;
+		&lt;td&gt;&lt;input name="foo" type="text" class="validate_required"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Normal select&lt;/th&gt;
+		&lt;td&gt;
+			&lt;select name="foo" class="validate_required"&gt;
+				&lt;option value=""&gt;Please select something&lt;/option&gt;
+				&lt;option&gt;Something&lt;/option&gt;
+			&lt;/select&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Normal checkbox&lt;/th&gt;
+		&lt;td&gt;&lt;input name="foo" type="checkbox" class="validate_required"/&gt; please check me&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Normal radiobox&lt;/th&gt;
+		&lt;td&gt;
+			&lt;input name="foo" type="radio" value="foo" class="validate_required"/&gt; check me
+			&lt;input name="foo" type="radio" value="bar" class="validate_required"/&gt; or me
+		&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Normal textarea&lt;/th&gt;
+		&lt;td&gt;&lt;textarea name="foo" class="validate_required"&gt;&lt;/textarea&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;input type="submit" value="Submit"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form&gt;
+
+#
+# javascript:
+#
+$("#form1").validate();
+</pre>
+</div>
+
+<form id="form1" method="post" action="./demo.html">
+<table>
+	<tr>
+		<th>Normal input</th>
+		<td><input name="foo" type="text" class="validate_required"/></td>
+	</tr>
+	<tr>
+		<th>Normal select</th>
+		<td>
+			<select name="foo" class="validate_required">
+				<option value="">Please select something</option>
+				<option>Something</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>Normal checkbox</th>
+		<td><input name="foo" type="checkbox" class="validate_required"/> please check me</td>
+	</tr>
+	<tr>
+		<th>Normal radiobox</th>
+		<td>
+			<input name="foo" type="radio" value="foo" class="validate_required"/> check me
+			<input name="foo" type="radio" value="bar" class="validate_required"/> or me
+		</td>
+	</tr>
+	<tr>
+		<th>Normal textarea</th>
+		<td><textarea name="foo" class="validate_required"></textarea></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" value="Submit"/></td>
+	</tr>
+</table>
+</form>
+
+<h3>Change validation error output with classes</h3>
+
+<div class="code">
+<span class="title">Code (click here to show/hide)</span>
+<pre>
+#
+# html:
+#
+&lt;form id="form2" method="post" action="./demo.html"&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Class error&lt;/th&gt;
+		&lt;td&gt;&lt;input name="foo" type="text" class="validate_required validate_error_class"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Inline error&lt;/th&gt;
+		&lt;td&gt;&lt;input name="foo" type="text" class="validate_required validate_error_inline" title="Please enter some text"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Append error&lt;/th&gt;
+		&lt;td&gt;&lt;input name="foo" type="text" class="validate_required validate_error_append"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Parent error&lt;/th&gt;
+		&lt;td&gt;&lt;input name="foo" type="text" class="validate_required validate_error_parent" title="Please enter some text"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Alert error&lt;/th&gt;
+		&lt;td&gt;&lt;input name="foo" type="text" class="validate_required validate_error_alert" title="Please enter some text"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;input type="submit" value="Submit"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form&gt;
+
+#
+# javascript:
+#
+$("#form2").validate();
+</pre>
+</div>
+
+<form id="form2" method="post" action="./demo.html">
+<table>
+	<tr>
+		<th>Class error</th>
+		<td><input name="foo" type="text" class="validate_required validate_error_class"/></td>
+	</tr>
+	<tr>
+		<th>Inline error</th>
+		<td><input name="foo" type="text" class="validate_required validate_error_inline" title="Please enter some text"/></td>
+	</tr>
+	<tr>
+		<th>Append error</th>
+		<td><input name="foo" type="text" class="validate_required validate_error_append"/></td>
+	</tr>
+	<tr>
+		<th>Parent error</th>
+		<td><input name="foo" type="text" class="validate_required validate_error_parent" title="Please enter some text"/></td>
+	</tr>
+	<tr>
+		<th>Alert error</th>
+		<td><input name="foo" type="text" class="validate_required validate_error_alert" title="Please enter some text"/></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" value="Submit"/></td>
+	</tr>
+</table>
+</form>
+
+<h3>Change validation error output with javascript</h3>
+
+<div class="code">
+<span class="title">Code (click here to show/hide)</span>
+<pre>
+#
+# html:
+#
+&lt;form id="form3" method="post" action="./demo.html"&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Text&lt;/th&gt;
+		&lt;td&gt;&lt;input name="foo" type="text" class="validate_required"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Select&lt;/th&gt;
+		&lt;td&gt;
+			&lt;select name="foo" class="validate_required"&gt;
+				&lt;option value=""&gt;Please select something&lt;/option&gt;
+				&lt;option&gt;Something&lt;/option&gt;
+			&lt;/select&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Checkbox&lt;/th&gt;
+		&lt;td&gt;&lt;input name="foo" type="checkbox" class="validate_required" title="please check me"/&gt; please check me&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Textarea&lt;/th&gt;
+		&lt;td&gt;&lt;textarea name="foo" class="validate_required" title="please enter text in the textarea"&gt;&lt;/textarea&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;input type="submit" value="Submit"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form&gt;
+
+#
+# javascript:
+#
+$("#form3").validate({
+	error_output:	{
+		text:			"inline",
+		select:			"append",
+		other:			"parent",
+		textarea:		"alert"
+	}
+});
+</pre>
+</div>
+
+<form id="form3" method="post" action="./demo.html">
+<table>
+	<tr>
+		<th>Text</th>
+		<td><input name="foo" type="text" class="validate_required"/></td>
+	</tr>
+	<tr>
+		<th>Select</th>
+		<td>
+			<select name="foo" class="validate_required">
+				<option value="">Please select something</option>
+				<option>Something</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>Checkbox</th>
+		<td><input name="foo" type="checkbox" class="validate_required" title="please check me"/> please check me</td>
+	</tr>
+	<tr>
+		<th>Textarea</th>
+		<td><textarea name="foo" class="validate_required" title="please enter text in the textarea"></textarea></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" value="Submit"/></td>
+	</tr>
+</table>
+</form>
+
+<h3>Add custom validation function</h3>
+
+<div class="code">
+<span class="title">Code (click here to show/hide)</span>
+<pre>
+#
+# html:
+#
+&lt;form id="form4" method="post" action="./demo.html"&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Please enter one's and zero's only&lt;/th&gt;
+		&lt;td&gt;&lt;input name="foo" type="text" class="validate_required validate_type_binary"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;input type="submit" value="Submit"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form&gt;
+
+#
+# javascript:
+#
+$("#form4").validate({
+	// Define the type of validation to use
+	error_output:	{
+		binary:			"append"
+	},
+	// Define the validation function
+	types:			{
+		binary:		function (element, object) {
+			var valid	=	true,
+			pattern		=	/[^0|1]/;
+			
+			if (pattern.exec(element.el.val()) || element.el.val().length &lt; 1) {
+				valid		=	false;
+			}
+			
+			return valid; 
+		}
+	}
+});
+</pre>
+</div>
+
+<form id="form4" method="post" action="./demo.html">
+<table>
+	<tr>
+		<th>Please enter one's and zero's only</th>
+		<td><input name="foo" type="text" class="validate_required validate_type_binary"/></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" value="Submit"/></td>
+	</tr>
+</table>
+</form>
+
+<h3>Add custom output function</h3>
+
+<div class="code">
+<span class="title">Code (click here to show/hide)</span>
+<pre>
+#
+# html:
+#
+&lt;form id="form5" method="post" action="./demo.html"&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;Enter text please&lt;/th&gt;
+		&lt;td&gt;&lt;input name="foo" type="text" class="validate_required"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;input type="submit" value="Submit"/&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form&gt;
+
+#
+# javascript:
+#
+$("#form5").validate({
+	// Define the type of error output to use
+	error_output:	{
+		text:			"fadeInOut"
+	},
+	// Define the output function
+	output:			{
+		fadeInOut:	function (element, object) {
+			
+			var i,
+			fadeIn	=	function(i){
+				element.el.fadeIn(100, function(){
+					i++;
+					if(i &lt; 20){
+						fadeOut(i);
+					}
+				});
+			},
+			fadeOut	=	function(i){
+				element.el.fadeOut(100, function(){
+					i++;
+					if(i &lt; 20){
+						fadeIn(i);
+					}
+				});
+			};
+			fadeOut(0);
+			
+		}
+	}
+});
+</pre>
+</div>
+
+<form id="form5" method="post" action="./demo.html">
+<table>
+	<tr>
+		<th>Enter text please</th>
+		<td><input name="foo" type="text" class="validate_required"/></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" value="Submit"/></td>
+	</tr>
+</table>
+</form>
+
+
+<h3>Validate a single element</h3>
+
+<div class="code">
+<span class="title">Code (click here to show/hide)</span>
+<pre>
+#
+# html:
+#
+&lt;input type="text" class="validate_required validateMePlease"/&gt;
+&lt;a href="#" class="clickMeToValidate"&gt;click here to validate&lt;/a&gt;
+
+#
+# javascript:
+#
+$(".clickMeToValidate").click(function(){
+	if ($(".validateMePlease").validate() ){
+		alert("Yay I'm valid");
+	}
+	return(false);
+});
+</pre>
+</div>
+
+<input type="text" class="validate_required validateMePlease"/>
+<a href="#" class="clickMeToValidate">click here to validate</a>
+
+</div>
+
+<script src="./jquery-1.4.min.js"></script>
+<script src="./validation.min.js"></script>
+<script>
+// <![CDATA[
+$(document).ready(function(){
+	
+	//
+	// Basic validation
+	//
+	$("#form1").validate();
+	
+	//
+	// Change validation error output with classes
+	//
+	$("#form2").validate();
+	
+	//
+	// Change validation error output with javascript
+	//
+	$("#form3").validate({
+		error_output:	{
+			text:			"inline",
+			select:			"append",
+			other:			"parent",
+			textarea:		"alert"
+		}
+	});
+	
+	//
+	// Add custom validation function
+	//
+	$("#form4").validate({
+		// Define the type of error output to use
+		error_output:	{
+			binary:			"append"
+		},
+		// Define the validation function
+		types:			{
+			binary:		function (element, object) {
+				var valid	=	true,
+				pattern		=	/[^0|1]/;
+				
+				if (pattern.exec(element.el.val()) || element.el.val().length < 1) {
+					valid		=	false;
+				}
+				
+				return valid; 
+			}
+		}
+	});
+	
+	//
+	// Add custom output function
+	//
+	$("#form5").validate({
+		// Define the type of error output to use
+		error_output:	{
+			text:			"fadeInOut"
+		},
+		// Define the output function
+		output:			{
+			fadeInOut:	function (element, object) {
+				
+				var i,
+				fadeIn	=	function(i){
+					element.el.fadeIn(100, function(){
+						i++;
+						if(i < 20){
+							fadeOut(i);
+						}
+					});
+				},
+				fadeOut	=	function(i){
+					element.el.fadeOut(100, function(){
+						i++;
+						if(i < 20){
+							fadeIn(i);
+						}
+					});
+				};
+				fadeOut(0);
+				
+			}
+		}
+	});
+	
+	//
+	// Validate a single element
+	//
+	$(".clickMeToValidate").click(function(){
+		if ($(".validateMePlease").validate()) {
+			alert("Yay I'm valid");
+		}
+		return(false);
+	});
+	
+	//
+	// For demo page
+	//
+	$(".code span").toggle(
+		function(){
+			$(this).parent().find("pre").show();
+		},
+		function(){
+			$(this).parent().find("pre").hide();
+		}
+	);
+});
+// ]]>
+</script>
+</body>
+</html>

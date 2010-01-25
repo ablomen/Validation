@@ -1,0 +1,97 @@
+/*
+Copyright (c) 2009, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.8.0r4
+*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
+
+*{
+	zoom:			1;
+}
+
+body{
+	font-family:		arial;
+	background:		#ebebff;
+	color:			#333;
+	margin:			0;
+	padding:		1em;
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-family:		georgia;
+}
+
+h1{
+	font-size:		2.6em;
+	margin:			0.6em 0 0.2em;
+}
+
+h2{
+	font-size:		1.8em;
+	margin:			1.2em 0 0.2em;
+}
+
+h3{
+	font-size:		1.35em;
+	margin:			2em 0 0.5em;
+}
+
+h4{
+	font-size:		1.15em;
+	margin:			0.4em 0 0;
+}
+
+cite{
+	font-style:		italic;
+	color:			#666;
+}
+
+p, table, ul{
+	line-height:		1.6em;
+	padding:		0.5em 0;
+}
+
+th{
+	padding:		0 2em 0 0;
+	color:			#666;
+}
+
+a:link, a:visited{
+	color:			#333;
+	background:		#dadaee;
+	text-decoration:	none;
+	padding:		0.1em 0.2em;
+}
+
+a:hover, a:active{
+	background:		#babaee;
+}
+
+.color{
+	color:			#ff9900;
+}
+
+.code{
+	background:		#babaee;
+	padding:		0.5em 1em;
+	margin:			1em 0;
+}
+
+.code span{
+	line-height:		2em;
+	cursor:			pointer;
+	color:			#000;
+}
+
+.code pre{
+	display:		none;
+}
+
+#container{
+	width:			57em;
+	overflow:		auto;
+	margin:			0 auto;
+}
+
+

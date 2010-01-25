@@ -1,0 +1,12 @@
+Validation
+
+This is just another jQuery validation plugin, positive points are:
+
+    * Easy to use.
+    * Easy to extend.
+    * Extend everything, add your own validation and output functions.
+    * Generated html is valid, the code itself validates in jslint (good parts on except use strict).
+    * Uses title attribute for textual errors, can use classes for custom behavior.
+    * Works with jQuery 1.3.2 and 1.4
+    * Can also be used on single elements outside of forms and inside other (ajax) functions.
+
