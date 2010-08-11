@@ -569,7 +569,7 @@
 	//
 	$.fn.validate	=	function (options) {
 		
-		var return_data	=	false;
+		var return_data =       true;
 		
 		$(this).each(function () {
 			
@@ -580,7 +580,7 @@
 				if (options) {
 					$.data(el, "validate").set_options(options);
 				} else {
-					return_data	=	$.data(el, "validate");
+					return_data     =       $.data(el, "validate") && return_data;
 				}
 			} else {
 				if (el.tagName.toLowerCase() === "form") {
@@ -588,7 +588,7 @@
 				} else if (el.tagName.toLowerCase() === "input" || el.tagName.toLowerCase() === "textarea" || el.tagName.toLowerCase() === "select") {
 					validate	=	new ValidateInput(el, options);
 					
-					return_data	=	validate.validate();
+					return_data     =       validate.validate() && return_data;
 				}
 			}
 			
